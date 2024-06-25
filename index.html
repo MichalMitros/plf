@@ -1,0 +1,221 @@
+<html>
+    <head>
+        <title>Polish Language Fucker</title>
+        <script>
+            function updateText(text) {
+                let converted = "";
+                for(let i = 0 ; i<text.length; i++) {
+                    if(text[i] == 'ó') { converted += "u"; continue; }
+                    if(text[i] == 'u' && i < text.length-1 && text[i+1].toLowerCase() != text[i+1].toUpperCase()) { converted += "ó"; continue; }
+                    if(text[i] == 'Ó') { converted += "U"; continue; }
+                    if(text[i] == 'U' && i < text.length-1 && text[i+1].toLowerCase() != text[i+1].toUpperCase()) { converted += "Ó"; continue; }
+
+                    if(i < text.length-3 &&
+                        (
+                            text[i].toLowerCase() == 'c' &&
+                            text[i+1].toLowerCase() == 'h'
+                        ) &&
+                        text[i+2].toLowerCase() == 'r' &&
+                        text[i+3].toLowerCase() == 'z'
+                    ) {
+                        converted += text[i];
+                        converted += text[i+1];
+                        if (text[i+2] == text[i+2].toLowerCase()) {
+                            converted += 'sz';
+                        } else {
+                            if(text[i+3] == text[i+3].toUpperCase()) {
+                                converted += 'SZ';  
+                            } else {
+                                converted += 'Sz';
+                            }
+                        }
+                        i += 3;
+                        continue;
+                    }
+
+                    if(i == 0 && text[i] == 'h') { converted += "ch"; continue; }
+                    if(i == 0 && text.length == 1 && text[i] == 'H') { converted += "Ch"; continue; }
+                    if(i == 0 && text[i] == 'H' && text[i+1].toLowerCase() == text[i+1]) { converted += "Ch"; continue; }
+                    if(text[i] == 'h' && text[i-1] == "c") { converted = converted.slice(0, -1) + 'h'; continue; }
+                    if(text[i] == 'h' && text[i-1] == "C") { converted = converted.slice(0, -1) + 'H'; continue; }
+                    if(text[i] == 'H' && text[i-1] == "C") { converted = converted.slice(0, -1) + 'H'; continue; }
+                    if(text.length > 1 && text[i] == 'H' && text[i+1].toUpperCase() == text[i+1]) { converted += "CH"; continue; }
+                    if(text[i] == 'h') { converted += 'ch'; continue; }
+                    if(text[i] == 'H') { converted += 'Ch'; continue; }
+
+                    if(i < text.length-2 &&
+                        (
+                            text[i].toLowerCase() == 'p' ||
+                            text[i].toLowerCase() == 't'
+                        ) &&
+                        text[i+1].toLowerCase() == 'r' &&
+                        text[i+2].toLowerCase() == 'z'
+                    ) {
+                        converted += text[i];
+                        if (text[i+1] == text[i+1].toLowerCase()) {
+                            converted += 'sz';
+                        } else {
+                            if(text[i+2] == text[i+2].toUpperCase()) {
+                                converted += 'SZ';    
+                            } else {
+                                converted += 'Sz';
+                            }
+                        }
+                        i += 2;
+                        continue;
+                    }
+
+                    if(text[i] == 'ż') { converted += 'rz'; continue; }
+                    if(text.length > 1 && text[i] == 'Ż' && text[i+1].toUpperCase() == text[i+1]) { converted += "RZ"; continue; }
+                    if(text[i] == 'Ż') { converted += 'Rz'; continue; }
+                    if(text[i].toLowerCase() == 'z' && i > 0 && text[i-1] == 'r') { converted = converted.slice(0, -1) + 'ż'; continue; }
+                    if(text[i].toLowerCase() == 'z' && i > 0 && text[i-1] == 'R') { converted = converted.slice(0, -1) + 'Ż'; continue; }
+
+                    if(i > 0 && i < text.length-2 && text[i-1].toLowerCase() == 'n' && text[i].toLowerCase() == 'i' && text[i+1].toLowerCase() == 'e' && text[i+2].toLowerCase() != text[i+2].toUpperCase()) {
+                        converted += text[i-1];
+                        converted += text[i];
+                        converted += text[i+1];
+                        converted += " ";
+                        converted += text[i+2];
+                        i += 2;
+                        continue;
+                    }
+
+                    if(i < text.length-2 && text[i] == ',' && text[i+1] == ' '  && text[i+2].toLowerCase() != text[i+2].toUpperCase()) {
+                        converted += " ,";
+                        converted += text[i+2];
+                        i += 2;
+                        continue;
+                    }
+
+                    if(i < text.length-3 && text[i].toLowerCase() != text[i].toUpperCase() && text[i+1] == '.' && text[i+2] == ' '  && text[i+3].toLowerCase() != text[i+3].toUpperCase()) {
+                        converted += text[i];
+                        converted += " .";
+                        converted += text[i+3];
+                        i += 3;
+                        continue;
+                    }
+
+                    if(i < text.length-3 && text[i].toLowerCase() != text[i].toUpperCase() && text[i+1] == '!' && text[i+2] == ' '  && text[i+3].toLowerCase() != text[i+3].toUpperCase()) {
+                        converted += text[i];
+                        converted += " !";
+                        converted += text[i+3];
+                        i += 3;
+                        continue;
+                    }
+
+                    if(i < text.length-3 && text[i].toLowerCase() != text[i].toUpperCase() && text[i+1] == '?' && text[i+2] == ' '  && text[i+3].toLowerCase() != text[i+3].toUpperCase()) {
+                        converted += text[i];
+                        converted += " ?";
+                        converted += text[i+3];
+                        i += 3;
+                        continue;
+                    }
+
+                    if(i < text.length-4 && text[i].toLowerCase() != text[i].toUpperCase() && text[i+1] == ' ' && text[i+2].toLowerCase() == 'i' && text[i+3] == ' ' && text[i+4].toLowerCase() != text[i+4].toUpperCase()) {
+                        converted += text[i];
+                        converted += text[i+1];
+                        converted += ',';
+                        converted += text[i+2];
+                        converted += text[i+3];
+                        converted += text[i+4];
+                        i += 4;
+                        continue;
+                    }
+
+                    if(i > 0 && i < text.length-2 && text[i-1].toLowerCase() != text[i-1].toUpperCase() && text[i].toLowerCase() == 'd' && text[i+1].toLowerCase() == 'k' && text[i+2].toLowerCase() == 'i') {
+                        if (text[i] == text[i].toLowerCase()) {
+                            converted += 't';
+                        } else {
+                            converted += 'T';
+                        }
+                        converted += text[i+1];
+                        converted += text[i+2];
+                        i += 2;
+                        continue;
+                    }
+
+                    if(text[i].toLowerCase() == 'ę' && i%3 == 0) {
+                        if (text[i] == text[i].toLowerCase()) {
+                            converted += 'en';
+                        } else {
+                            if(i < text.length-1 && text[i+1] == text[i+1].toUpperCase()) {
+                                converted += 'EN';    
+                            } else {
+                                converted += 'En';
+                            }
+                        }
+                        continue;
+                    }
+
+                    if(i < text.length-6 &&
+                        text[i].toLowerCase() == 'w' &&
+                        text[i+1] == ' '  &&
+                        text[i+2].toLowerCase() == 'o' &&
+                        text[i+3].toLowerCase() == 'g' &&
+                        text[i+4].toLowerCase() == 'ó' &&
+                        text[i+5].toLowerCase() == 'l' &&
+                        text[i+6].toLowerCase() == 'e'
+                    ) {
+                        converted += text[i];
+                        converted += text[i+2];
+                        converted += text[i+3];
+                        converted += text[i+4];
+                        converted += text[i+5];
+                        converted += text[i+6];
+                        i += 6;
+                        continue;
+                    }
+
+                    if(i < text.length-5 &&
+                        text[i].toLowerCase() != text[i].toUpperCase() &&
+                        text[i+1] == ' '  &&
+                        text[i+2].toLowerCase() == 'k' &&
+                        text[i+3].toLowerCase() == 't' &&
+                        text[i+4].toLowerCase() == 'ó' &&
+                        text[i+5].toLowerCase() == 'r'
+                    ) {
+                        converted += text[i];
+                        converted += text[i+1];
+                        converted += ",";
+                        converted += text[i+2];
+                        converted += text[i+3];
+                        converted += text[i+4];
+                        converted += text[i+5];
+                        i += 5;
+                        continue;
+                    }
+                    
+                    converted += text[i]
+                }
+
+                document.getElementById("output-text").value = converted;
+            }
+
+            function copyToClipboard() {
+                // Get the text field
+                var copyText = document.getElementById("output-text");
+
+                // Select the text field
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); // For mobile devices
+
+                // Copy the text inside the text field
+                navigator.clipboard.writeText(copyText.value);
+            }
+        </script>
+    </head>
+    <body>
+        <div style="width: 50%; float:left">
+            <h3>Input</h3>
+            <textarea id="input-text" name="w3review" wrap="soft" oninput="updateText(this.value)" style="width: 100%; height: 85vh; resize: none;" autofocus="true"></textarea>
+        </div>
+        <div style="width: 50%; float:right">
+            <div style="display:inline-block;">
+                <h3 style="display:inline-block;">Output</h3>
+                <button style="display:inline-block;"  onclick="copyToClipboard()">Copy</button>
+            </div>
+            <textarea id="output-text" name="w3review" readonly="true" wrap="soft" style="width: 100%; height: 85vh; resize: none;"></textarea>
+        </div>
+    </body>
+</html>
